@@ -1,0 +1,133 @@
+﻿@using WebApiProject.Models
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="@Url.Action("Index", "_HomeAdmin")" class="brand-link">
+        <img src="~/Areas/content/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                
+                <img src="~/Areas/content/dist/img/13048085.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            @if (Session["user"] != null)
+            {
+                NguoiDung admin = (NguoiDung)Session["user"];
+                <div class="info">
+                    <a href="#" class="d-block">@admin.name</a>
+                </div>
+            }
+
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Dashboard -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Sản phẩm -->
+                <li class="nav-item">
+                    <a href="@Url.Action("GetProduct", "_Products")" class="nav-link">
+                        <i class="nav-icon fas fa-shoe-prints"></i>
+                        <p>
+                            Sản phẩm
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Đơn đặt hàng -->
+                <li class="nav-item">
+                    <a href="@Url.Action("GetAllOrders", "_Orders")" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Đơn đặt hàng
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Người dùng -->
+                <li class="nav-item">
+                    <a href="@Url.Action("GetAllUser", "_Users")" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Người dùng
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Đánh giá -->
+                <li class="nav-item">
+                    <a href="@Url.Action("GetAllReview", "_ProductReviews")" class="nav-link">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            Đánh giá
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Thương hiệu -->
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "_Brands", new { page = 1})" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>
+                            Thương hiệu
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Kho hàng -->
+                <li class="nav-item">
+                    <a href="@Url.Action("GetallWarehouse", "_Warehouse")" class="nav-link">
+                        <i class="nav-icon fas fa-warehouse"></i>
+                        <p>
+                            Kho
+                        </p>
+                    </a>
+                </li>
+                <!-- Trạng thái đơn hàng -->
+                <!--<li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-clipboard-check"></i>
+            <p>
+                Trạng thái đơn hàng
+            </p>
+        </a>
+    </li>-->
+                <!-- Phân quyền -->
+                <!--<li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-lock"></i>
+            <p>
+                Phân quyền
+            </p>
+        </a>
+    </li>-->
+                <!-- Đăng xuất -->
+                <li class="nav-item">
+                    <a href="@Url.Action("signout", "Login", new { area = ""})" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Đăng xuất
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

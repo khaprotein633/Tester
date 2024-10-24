@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model  PagedList.IPagedList<WebApiProject.Models.Shoes>
+
+@{
+    ViewBag.Title = "GetListByIDCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+
+
+}
+
+<div class="card">
+    <div class="card-header border-transparent">
+        <h3 class="card-title">Tất cả sản phẩm</h3>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lọc theo
+            </button>
+            <div class="dropdown-menu" aria-labelledby="filterDropdown">
+                <a class="dropdown-item" href="@Url.Action("Index", "_Products", new {page =1 })">Tất cả</a>
+                @foreach (var category in db.Categories.ToList())
+                {<a class="dropdown-item" href="@Url.Action("GetListByIDCategory", "_Products", new {page =1, category_id = category.category_id })">@category.category_name</a>
+
+            }
+
+            </div>
+        </div>
+        <div class="float-right">
+            <!-- Search input -->
+            <form action="@Url.Action("GetListByName", "_Products")" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+                    <input type="hidden" name="page" value="1">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Tên sản phẩm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*  Lấy sản phẩm nè *@
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><p class="mb-0 mt-4"> @item.product_id</p></td>
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="~/Content/@item.productimage_url" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                </div>
+                            </th>
+                            <td><p class="mb-0 mt-4">@item.product_name</p></td>
+
+                            <td>
+                                <a href="@Url.Action("ProductDetail", "_Products", new { id_product = item.product_id })" class="btn btn-primary mb-0 mt-4">Xem</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @* Phân tràng nè *@
+        <div class="col-12">
+            <div class="pagination justify-content-center mt-5">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a href="@Url.Action("Index", new { page = i })" class="page-link">@i</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

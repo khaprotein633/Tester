@@ -1,0 +1,135 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model  PagedList.IPagedList<WebApiProject.Models.BinhLuanSP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+}
+
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+
+<div class="card">
+    <div class="card-header border-transparent">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lọc theo sản phẩm
+            </button>
+            <div class="dropdown-menu" aria-labelledby="filterDropdown" style="max-height: 200px; overflow-y: auto;">
+              
+                @foreach (var product in db.Products.ToList())
+                {
+                    <a class="dropdown-item" href="@Url.Action("GetReviewByIDProduct", "_ProductReviews", new {id_product = product.product_id })">@product.product_id</a>
+                }
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã bình luận</th>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Mã người dùng</th>
+                        <th scope="col">Đánh giá </th>
+                        <th scope="col">Bình luận</th>
+                        <th scope="col">Ngày đăng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*  Lấy sản phẩm nè *@
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td><p class="mb-0 mt-4"> @item.product_review_id</p></td>
+                        <td><p class="mb-0 mt-4"> <a href="@Url.Action("ProductDetail","_Products",new { id_product = item.product_id})">@item.product_id</a>  </p></td>
+                        <td><p class="mb-0 mt-4"> <a href="@Url.Action("Get_user_by_id","_Users",new { id_user = item.user_id})">@item.user_id</a></p></td>
+                        <td>
+                            <p class="mb-0 mt-4">@item.rating</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">@item.comment</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">@item.review_date</p>
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-md rounded-circle bg-light border mt-4" data-toggle="modal" data-target="#confirmDeleteModal_@item.product_review_id">
+                                <i class="fa fa-times text-danger"></i>
+                            </button>
+                            <div class="modal fade" id="confirmDeleteModal_@item.product_review_id" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác Nhận Xoá</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc chắn muốn xoá không?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            @using (Html.BeginForm("DeleteReview", "_ProductReviews", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("id_review", item.product_review_id)
+                                                <button type="submit" class="btn btn-danger">Xoá</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        @* Phân tràng nè *@
+        <div class="col-12">
+            <div class="pagination justify-content-center mt-5">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a href="@Url.Action("Index", new { page = i })" class="page-link">@i</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

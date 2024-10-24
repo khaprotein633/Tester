@@ -1,0 +1,144 @@
+﻿@model IEnumerable<WebApiProject.Models.GioHang>
+@using WebApiProject.Models;
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+    
+    NguoiDung khachhang = null;
+    if (Session["user"] != null)
+    {
+        khachhang = (NguoiDung)Session["user"];
+    }
+}
+
+<div class="container py-5">
+</div>
+
+
+<!-- Cart Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div>
+            @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-success">
+                    @ViewBag.SuccessMessage
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Tên giày</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Tổng</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            <p class="mb-0 mt-4">@item.product_id</p>
+                        </td>
+                        <td scope="row">
+                            <div class="d-flex align-items-center">
+                                <img src="~/Content/@item.imageurl" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">@item.productname</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">@item.size</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">@String.Format("{0:N0}", item.price) VNĐ</p>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("UpdateCart", "cart", FormMethod.Post))
+                            {
+                                @Html.Hidden("cartId", item.cart_id)
+                                @*@Html.Hidden("productId", item.product_id)
+                                @Html.Hidden("size", item.size)
+                                @Html.Hidden("price", item.price)*@
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <input type="number" name="quantity" class="form-control form-control-sm text-center border-0" value="@item.quantity">
+                                </div>
+                                <input type="submit" class="btn btn-sm btn-primary mt-2" value="Cập nhật">
+                            }
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4"> @String.Format("{0:N0}", (item.quantity * item.price)) VNĐ </p>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ProductDetail","Shop",new { id_product = item.product_id})"> <p class="mb-0 mt-4"> Xem</p></a>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("DeleteCart", "cart", FormMethod.Post))
+                            {
+                                @Html.Hidden("cartid", item.cart_id)
+                                <button type="submit" class="btn btn-md rounded-circle bg-light border mt-4">
+                                    <i class="fa fa-times text-danger"></i>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+
+                    <tr>
+                        <td colspan="4"></td>
+                        <td colspan="2" class="text-end">
+                            @using (Html.BeginForm("Createorder", "orders", FormMethod.Post))
+                            {
+
+                                <div class="input-group mt-4">
+                                    <p class="mb-0 mt-2">Địa chỉ giao hàng:</p>
+                                    <input type="text" name="shippingAddress" class="form-control" value="@khachhang.address">
+                                </div>
+                                <div class="mb-0 mt-2">
+                                    Phí vận chuyển: 40,000 VNĐ
+                                </div>
+                                <input type="hidden" name="totalAmount" value="@((Model.Sum(item => item.quantity * item.price)) + 40000)">
+                                <p class="mb-0 mt-2">
+                                    <strong>Tổng giá trị:</strong> @String.Format("{0:N0}", (Model.Sum(item => item.quantity * item.price)) + 40000) VNĐ
+                                </p>
+
+                                <button type="button" class="btn btn-primary mt-2 confirm-order-btn" data-bs-toggle="modal" data-bs-target="#orderConfirmationModal">Đặt hàng</button>
+                                <div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="orderConfirmationModalLabel">Xác nhận đặt hàng</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Bạn có chắc chắn muốn đặt hàng?</p>
+                                                <p><strong>Tổng giá trị:</strong> @String.Format("{0:N0}", (Model.Sum(item => item.quantity * item.price)) + 40000) VNĐ</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                                <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+

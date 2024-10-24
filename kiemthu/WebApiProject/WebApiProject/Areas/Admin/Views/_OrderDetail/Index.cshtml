@@ -1,0 +1,91 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model  PagedList.IPagedList<WebApiProject.Models.ChiTietDH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+
+<div class="card">
+    <div>
+        @Html.ActionLink("Quay lại", "GetAllOrders", "_Orders", null, new { @class = "btn btn-secondary mt-3" })
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã Chi tiết hoá đơn</th>
+                        <th scope="col">Mã Đơn hàng</th>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Kích thước</th>
+                        <th scope="col">Giá sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @*  Lấy sản phẩm nè *@
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td><p class="mb-0 mt-4"> @item.order_details_id</p></td>
+                        <td><p class="mb-0 mt-4"> @item.order_id</p></td>
+                        <td><p class="mb-0 mt-4"> @item.product_id</p></td>
+                        <th scope="row">
+                            <div class="d-flex align-items-center">
+                                <img src="~/Content/@item.productimage_url" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                            </div>
+                        </th>
+                        <td><p class="mb-0 mt-4"> @item.product_name</p></td>
+                        <td><p class="mb-0 mt-4"> @item.size</p></td>
+                        <td><p class="mb-0 mt-4">@item.price_oder</p></td>
+                        <td><p class="mb-0 mt-4">@item.quantity</p></td>
+                        
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        @* Phân tràng nè *@
+        <div class="col-12">
+            <div class="pagination justify-content-center mt-5">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a href="@Url.Action("Index", new { page = i })" class="page-link">@i</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

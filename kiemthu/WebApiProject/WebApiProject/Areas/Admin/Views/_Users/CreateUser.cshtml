@@ -1,0 +1,92 @@
+﻿@model WebApiProject.Models.NguoiDung
+
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+
+
+@using (Html.BeginForm("CreateUser", "_Users", FormMethod.Post, new { @class = "form-horizontal", onsubmit = "return validform()", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-body">
+            <div class="form-horizontal ml-4">
+                <a href="@Url.Action("GetAllUser","_Users")" class="btn btn-md rounded-circle bg-light border mr-2">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+                <h4>Nhập thông tin</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label"> Phân quyền</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.role_id,
+                             new List<SelectListItem>
+                             {
+                                 new SelectListItem { Text = "Admin", Value = "R2" },
+                                 new SelectListItem { Text = "Customer", Value = "R1" }
+                             }, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label"> Tên người dùng</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label"> Số điện thoại</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.phonenumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phonenumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label"> Địa chỉ</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label"> Email</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label"> Mật khẩu</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

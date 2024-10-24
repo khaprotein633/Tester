@@ -1,0 +1,153 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model  PagedList.IPagedList<WebApiProject.Models.DonHang>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+}
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+<div class="card">
+    <div class="card-header border-transparent">
+        <h3 class="card-title">Tất cả đơn hàng</h3>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lọc theo
+            </button>
+            <div class="dropdown-menu" aria-labelledby="filterDropdown">
+                <a class="dropdown-item" href="@Url.Action("GetAllOrders", "_Orders")">Tất cả</a>
+                @foreach (var status in db.oderStatusChecks.ToList())
+                {
+                    
+                    <a class="dropdown-item" href="@Url.Action("GetAllOrdersByIdStatus","_Orders", new {id_status = status.oderstatus_id })">@status.status</a>
+
+                }
+
+            </div>
+            <div class="float-right">
+                <!-- Search input -->
+                <form action="@Url.Action("GetAllOrdersByIdUser", "_Orders")" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="input-group">
+
+                        <input type="text" name="id_user" class="form-control" placeholder="Mã người dùng">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã Đơn hàng</th>
+                        <th scope="col">Mã khác hàng</th>
+                        <th scope="col">Ngày đặt hàng</th>
+                        <th scope="col">Ngày nhận hàng</th>
+                        <th scope="col">Tổng đơn</th>
+                        <th scope="col">Địa chỉ giao hàng</th>
+                        <th scope="col">SĐT khách hàng</th>
+                        <th scope="col">Trạng thái đơn hàng</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*  Lấy sản phẩm nè *@
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td> <a href="@Url.Action("GetDetailByID_Order","_OrderDetail",new { id_order = item.orders_id } )"><p class="mb-0 mt-4">@item.orders_id</p> </a>  </td>
+
+                        <td> <a href="@Url.Action("Get_user_by_id","_Users",new { id_user = item.user_id } )"><p class="mb-0 mt-4">@item.user_id</p> </a>  </td>
+                        <td><p class="mb-0 mt-4">@item.orders_date</p></td>
+                        <td><p class="mb-0 mt-4">@item.delivery_date</p></td>
+                        <td><p class="mb-0 mt-4">@item.total_amount</p></td>
+                        <td><p class="mb-0 mt-4">@item.shipping_address</p></td>
+                        <td><p class="mb-0 mt-4">@item.user_phone</p></td>
+                        <td><p class="mb-0 mt-4">@item.status</p></td>
+
+                        @if (item.oderstatus_id != 4 && item.oderstatus_id != 5)
+                        {
+                            <td>
+                                <a href="@Url.Action("Edit_Order","_Orders",new { id_order = item.orders_id } )" class="btn btn-primary mb-0 mt-4">Cập nhật</a>
+                            </td>
+                        }
+
+                        <td>
+                            <button type="button" class="btn btn-md rounded-circle bg-light border mt-4" data-toggle="modal" data-target="#confirmDeleteModal_@item.orders_id">
+                                <i class="fa fa-times text-danger"></i>
+                            </button>
+                            <div class="modal fade" id="confirmDeleteModal_@item.orders_id" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác Nhận Xoá</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc chắn muốn xoá đơn hàng không?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            @using (Html.BeginForm("DeleteOrder", "_Orders", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("id_order", item.orders_id)
+                                                <button type="submit" class="btn btn-danger">Xoá</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @* Phân tràng nè *@
+        <div class="col-12">
+            <div class="pagination justify-content-center mt-5">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a href="@Url.Action("Index", new { page = i })" class="page-link">@i</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

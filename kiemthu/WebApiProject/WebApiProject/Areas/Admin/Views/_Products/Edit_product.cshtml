@@ -1,0 +1,108 @@
+﻿@model WebApiProject.Models.Shoes
+
+@{
+    ViewBag.Title = "Edit_product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+}
+
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+
+@using (Html.BeginForm("PutProduct","_Products",FormMethod.Post,new { @class = "form-horizontal", onsubmit = "return validform()", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="card">
+    <div>
+        @Html.ActionLink("Quay lại", "GetProduct", null, new { @class = "btn btn-secondary mt-3" })
+    </div>
+    <div class="card-body">
+        @Html.HiddenFor(model => model.product_id)
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Tên sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.product_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label"> Mã phân loại</label>
+            <div class="col-md-10 ">
+                @Html.DropDownListFor(model => model.category_id, new SelectList(db.Categories.ToList(), "category_id", "category_name"), "-- Chọn loại giày --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label"> Mã Thương hiệu</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.brand_id, new SelectList(db.Brands.ToList(), "brand_id", "brand_name"), "-- Chọn thương hiệu --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.brand_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Giá sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Url hình ảnh</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.productimage_url, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.productimage_url, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Mô tả</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = 6 })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Chi tiết</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.detail, new { @class = "form-control", rows = 3 })
+                @Html.ValidationMessageFor(model => model.detail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Ẩn sản phẩm trên trang chủ</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.hide,
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Hiện", Value = "1" },
+                        new SelectListItem { Text = "Ẩn", Value = "0" }
+                    }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.hide, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+   }

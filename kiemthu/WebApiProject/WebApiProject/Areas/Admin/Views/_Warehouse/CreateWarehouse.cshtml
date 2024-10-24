@@ -1,0 +1,65 @@
+﻿
+@model WebApiProject.Models.Soluongton
+
+@{
+    ViewBag.Title = "CreateWarehouse";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+}
+
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+@using (Html.BeginForm("PostWarehouse", "_Warehouse", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div>
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary mt-3" })
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Thương size giày mói</h4>
+            <br />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label"> Sản phẩm</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.product_id, new SelectList(db.Products.ToList(), "product_id", "product_id"), "-- Chọn sản phẩm --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.product_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="form-group row">
+                @*@Html.LabelFor(model => model.brand_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })*@
+                <label class="col-md-2 col-form-label"> Size</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.size, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.size, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @*@Html.LabelFor(model => model.brand_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })*@
+                <label class="col-md-2 col-form-label"> Số lượng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10 offset-md-2">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

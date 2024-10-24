@@ -1,0 +1,142 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj",
+        "projectName": "WebApiProject.UnitTests",
+        "projectPath": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj",
+        "packagesPath": "C:\\Users\\Khamoi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Khamoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\WebApiProject.csproj": {
+                "projectPath": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\WebApiProject.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.1.3, )"
+            },
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.14.0, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.25.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.25.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[130.0.6723.6900, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\WebApiProject.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\WebApiProject.csproj",
+        "projectName": "WebApiProject",
+        "projectPath": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\WebApiProject.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    }
+  }
+}

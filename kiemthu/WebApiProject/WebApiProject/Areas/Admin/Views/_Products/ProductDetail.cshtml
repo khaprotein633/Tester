@@ -1,0 +1,76 @@
+﻿
+
+@model WebApiProject.Models.Shoes
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+    //WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+    var cateory = db.Categories.Where(c => c.category_id == Model.category_id).FirstOrDefault();
+}
+
+<div>
+    @Html.ActionLink("Back to List", "GetProduct", null, new { @class = "btn btn-secondary mt-3" })
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit_product", new { id_product = Model.product_id}, new { @class = "btn btn-secondary mt-3" })
+</div>
+<div class="row mb-5">
+
+    <!-- Hình ảnh -->
+    <div class="col-lg-3">
+        <div class="card">
+            <img src="~/Content/@Model.productimage_url" class="card-img-top" alt="Product Image">
+        </div>
+    </div>
+    <!-- Thông tin sản phẩm -->
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Model.product_name</h5>
+                <p class="card-text">Thương hiệu: @Model.brandname</p>
+                <p class="card-text">Loại giày: @cateory.category_name</p>
+                <p class="card-text">@Model.detail</p>
+
+                @Html.Hidden("id_product", Model.product_id)
+                <div class="mb-3">
+                    <p class="card-text">
+                        Kích thước:
+                        @foreach (var sizeQuantity in db.Product_Size_Quantity.Where(c => c.product_id == Model.product_id).ToList())
+                        {
+                            <span class="badge bg-secondary me-2">@sizeQuantity.size</span>
+                        }
+
+                        @using (Html.BeginForm("GetWarehouseByProductID", "_Warehouse", FormMethod.Post))
+                        {
+                            @Html.Hidden("id_product", Model.product_id)
+                            <button type="submit" class="btn btn-danger">Xem số lượng tồn</button>
+                        }
+
+                    </p>
+
+                </div>
+                <div class="mb-3">
+                    <p class="text-dark fs-5 fw-bold mb-0">@String.Format("{0:N0}", Model.price) VNĐ</p>
+
+                </div>
+
+                <input type="hidden" name="id_product" value="@Model.product_id">
+                <input type="hidden" name="price" value="@Model.price">
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="card mb-5">
+        <div class="card-header">
+            Mô tả
+        </div>
+        <div class="card-body">
+            <p class="card-text">@Model.description</p>
+        </div>
+    </div>
+</div>
+<!-- Mô tả sản phẩm -->

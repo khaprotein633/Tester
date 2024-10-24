@@ -1,0 +1,144 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model  PagedList.IPagedList<WebApiProject.Models.NguoiDung>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage) || !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+<div class="card">
+    <div class="card-header border-transparent">
+        <h3 class="card-title">Danh sách Khách hàng</h3>
+        <span class="mx-2"></span>
+
+        <a class="btn btn-primary" href="@Url.Action("GetAllUser", "_Users")">Tất cả</a>
+        <span class="mx-2"></span>
+        <a class="btn btn-primary" href="@Url.Action("CreateUser", "_Users")">Thêm</a>
+        <div class="float-right">
+            <!-- Search input -->
+
+            <form action="@Url.Action("GetUserByName", "_Users")" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+
+                    <input type="text" name="name" class="form-control" placeholder="Tìm theo tên">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã Khách hàng</th>
+                        <th scope="col">Tên khách hàng</th>
+                        <th scope="col">Phần quyền</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Mật khẩu</th>
+                        <th scope="col">Ngày tạo</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @*  Lấy khách hàng nè *@
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td><p class="mb-0 mt-4"> @item.user_id</p></td>
+                        <td><p class="mb-0 mt-4">@item.name</p></td>
+                        <td><p class="mb-0 mt-4">@item.role_id</p></td>
+                        <td><p class="mb-0 mt-4">@item.email</p></td>
+                        <td><p class="mb-0 mt-4">@item.address</p></td>
+                        <td><p class="mb-0 mt-4">@item.phonenumber</p></td>
+                        <td><p class="mb-0 mt-4">@item.password</p></td>
+                        <td><p class="mb-0 mt-4">@item.accounddate</p></td>
+                        <td>
+                            <div class="d-flex align-items-center mt-4">
+
+                                <a href="@Url.Action("EditUser", "_Users", new { id_user = item.user_id })" class="btn btn-md rounded-circle bg-light border mr-2">
+                                    <i class="fas fa-pencil-alt text-primary" aria-hidden="true"></i>
+                                </a>
+                                <span class="mx-2">|</span>
+                                <button type="button" class="btn btn-md rounded-circle bg-light border mr-2" data-toggle="modal" data-target="#confirmDeleteModal_@item.user_id">
+                                    <i class="fa fa-times text-danger"></i>
+                                </button>
+                            </div>
+
+                            <div class="modal fade" id="confirmDeleteModal_@item.user_id" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác Nhận Xoá</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc chắn muốn xoá không?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            @using (Html.BeginForm("DeleteUser", "_Users", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("id_user", item.user_id)
+                                                <button type="submit" class="btn btn-danger">Xoá</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @* Phân tràng nè *@
+        <div class="col-12">
+            <div class="pagination justify-content-center mt-5">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a href="@Url.Action("Index", new { page = i })" class="page-link">@i</a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

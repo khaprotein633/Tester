@@ -1,0 +1,124 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<WebApiProject.Models.Shoes>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebApiProject.Models.Store_apiEntities db = new WebApiProject.Models.Store_apiEntities();
+    var list = db.Categories.ToList();
+}
+
+
+<style>
+    .product-name {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<!-- Single Page Header start -->
+<div class="container py-5">
+</div>
+<!-- Single Page Header End -->
+<!-- Fruits Shop Start-->
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <h1 class="mb-4">Sản phẩm:</h1>
+        <div class="row g-4">
+            <div class="col-lg-12">
+                <div class="row g-4">
+                    <div class="col-xl-3">
+                        <div class="input-group w-100 mx-auto d-flex">
+                            <form action="@Url.Action("Get_product_by_name", "Shop")" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="input-group">
+
+                                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <h4>Categories</h4>
+                                    @* List category loại giày *@
+                                    <ul class="list-unstyled fruite-categorie">
+                                        @foreach (var item in list)
+                                        {
+                                            <li>
+                                                <div class="d-flex justify-content-between fruite-name">
+                                                    <a href="@Url.Action("GetProductbyidcategory", new { id_category = item.category_id })"><i class="fas fa-futbol me-2"></i>@item.category_name</a>
+
+                                                </div>
+                                            </li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row g-4 justify-content-center">
+                            @foreach (var item in Model)
+                            {
+                                if (item.hide != 1)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 col-lg-4 col-xl-3 equal-height">
+                                        <div class="rounded position-relative fruite-item">
+                                            <div class="fruite-img">
+                                                <a href="@Url.Action("ProductDetail", "Shop", new { id_product = item.product_id })">
+                                                    <img src="~/Content/@item.productimage_url" class="img-fluid w-100 rounded-top" alt="">
+                                                </a>
+                                            </div>
+                                            @**@
+                                            <div class="p-4  rounded-bottom  border border-secondary border-top-0 flex-grow-1 d-flex flex-column">
+                                                <h5 class="product-name">@item.product_name</h5>
+                                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                                    <p class="text-dark fs-5 fw-bold mb-0">@String.Format("{0:N0}", item.price) VNĐ</p>
+
+                                                    <a href="@Url.Action("ProductDetail", "Shop", new { id_product = item.product_id})" class="btn border border-secondary rounded-pill px-3 text-primary" data-id="@item.product_id">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            <div class="col-12">
+                                <div class="pagination d-flex justify-content-center mt-5">
+                                    <a href="#" class="rounded">&laquo;</a>
+                                    @for (int i = 1; i <= Model.PageCount; i++)
+                                    {
+                                        <a href="@Url.Action("Index", new { page = i})" class="rounded @(i == Model.PageNumber ? "active" : "")">@i</a>
+                                    }
+                                    <a href="#" class="rounded">&raquo;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fruits Shop End-->

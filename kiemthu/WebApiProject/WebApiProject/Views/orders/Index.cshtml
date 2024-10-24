@@ -1,0 +1,134 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model  PagedList.IPagedList<WebApiProject.Models.DonHang>
+
+@{
+    ViewBag.Title = "Orderlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container py-5">
+</div>
+
+
+<!-- Order Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div>
+            <div>
+                @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.SuccessMessage
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-error">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Đơn hàng</th>
+                        <th scope="col">Ngày đặt</th>
+                        <th scope="col">Ngày giao</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Địa chỉ giao</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>
+                                <p class="mb-0 mt-4">@item.orders_id</p>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4">@item.orders_date</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">@item.delivery_date</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">@String.Format("{0:N0}", item.total_amount) VNĐ</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">@item.shipping_address</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">@item.user_phone</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">@item.status</p>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("detail","orders",new { id_order = item.orders_id})" class="btn btn-primary mb-2 mt-4">Xem</a>
+                            </td>
+
+                            @if (item.oderstatus_id == 1)
+                            {
+
+                        <td>
+                            @using (Html.BeginForm("CancelOrder", "orders", FormMethod.Post))
+                            {
+                                @Html.Hidden("id_order", item.orders_id)
+                                @Html.Hidden("id_user", item.user_id)
+                                <button type="button" class="btn btn-md rounded-circle bg-light border mt-4 confirm-cancel-btn" data-bs-toggle="modal" data-bs-target="#cancelorderConfirmModal">
+                                    <i class="fa fa-times text-danger"></i>
+                                </button>
+                               <div class="modal fade" id="cancelorderConfirmModal" tabindex="-1" aria-labelledby="cancelorderConfirmationModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="cancelorderConfirmationModalLabel">Xác nhận HUỶ</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h4>Bạn có chắc chắn muốn huỷ đơn hàng?</h4>
+                                            
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                                <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </td>
+
+                            }
+
+                            else
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12">
+            <div class="pagination d-flex justify-content-center mt-5">
+                <a href="#" class="rounded">&laquo;</a>
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <a href="@Url.Action("Index", new { page =i })" class="rounded @(i == Model.PageNumber ? "active" : "")">@i</a>
+                }
+                <a href="#" class="rounded">&raquo;</a>
+            </div>
+        </div>
+    </div>
+</div>
