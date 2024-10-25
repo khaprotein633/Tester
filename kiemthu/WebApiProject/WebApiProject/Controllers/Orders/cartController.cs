@@ -77,7 +77,7 @@ namespace WebApiProject.Controllers.Orders
             if (user != null)
             {
                 var sotonkho = db.Product_Size_Quantity.FirstOrDefault(c => c.product_id == id_product && c.size==size);
-                if(sotonkho != null)
+                if(sotonkho == null)
                 {
                     TempData["ErrorMessage"] = "Sản phẩm không tồn tại!";
                     return RedirectToAction("ProductDetail", "Shop", new { id_product = id_product });

@@ -21,8 +21,8 @@ namespace WebApiProject.Models
         public string soDienThoai { get; set; }
 
         [Required(ErrorMessage = "Bạn chưa nhập mật khẩu")]
-        [StringLength(12, ErrorMessage = "Mật khẩu tối thiểu {2} và tối đa {1} ký tự ", MinimumLength = 8)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$", ErrorMessage = "Mật khẩu phải có chữ hoa, chữ thường và số")]
+        [StringLength(12, ErrorMessage = "Mật khẩu tối thiểu 8 ký tự", MinimumLength = 8)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$", ErrorMessage = "Mật khẩu tối thiểu 8 ký tự, có chữ hoa, chữ thường và số")]
         [DataType(DataType.Password)]
         public string password { get; set; }
 
@@ -31,7 +31,7 @@ namespace WebApiProject.Models
         [Compare("password", ErrorMessage = "Mật khẩu không khớp")]
         public string confirm_password { get; set; }
 
-        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ !")]
+        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ!")]
         public string diachi { get; set; }
 
     }

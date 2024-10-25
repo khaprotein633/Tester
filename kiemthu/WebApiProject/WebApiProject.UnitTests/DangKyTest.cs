@@ -91,7 +91,7 @@ namespace WebApiProject.UnitTests
         {
 
             driver.FindElement(By.Name("hoten")).SendKeys("Nguyen Van B");
-            driver.FindElement(By.Name("email")).SendKeys("nguyenvanb@123");
+            driver.FindElement(By.Name("email")).SendKeys("nguyenvanb123");
             driver.FindElement(By.Name("soDienThoai")).SendKeys("0987654322");
             driver.FindElement(By.Name("diachi")).SendKeys("123 Đường ABC, TP.HCM");
             driver.FindElement(By.Name("password")).SendKeys("Khavo0603");
@@ -132,6 +132,125 @@ namespace WebApiProject.UnitTests
 
 
             Assert.IsTrue(mes.Contains("Số điện thoại là trường bắt buộc."));
+        }
+
+        [Test]
+        public void Test_RegisterErrsoDienThoai()
+        {
+
+            driver.FindElement(By.Name("hoten")).SendKeys("Nguyễn Văn D");
+            driver.FindElement(By.Name("email")).SendKeys("nguyenvand@gmail.com");
+            driver.FindElement(By.Name("soDienThoai")).SendKeys("123456789");
+            driver.FindElement(By.Name("diachi")).SendKeys("123 Đường ABC, TP.HCM");
+            driver.FindElement(By.Name("password")).SendKeys("Khavo0603");
+            driver.FindElement(By.Name("confirm_password")).SendKeys("Khavo0603");
+
+
+            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+            Thread.Sleep(2000);
+
+            var err = driver.FindElements(By.XPath("//span[contains(@class, 'text-danger') and text()='Số điện thoại không hợp lệ.']"));
+
+
+            string mes = err.Count > 0 ? err[0].Text : string.Empty;
+
+
+            Assert.IsTrue(mes.Contains("Số điện thoại không hợp lệ."));
+        }
+        [Test]
+        public void Test_RegisterWithoutAddress()
+        {
+
+            driver.FindElement(By.Name("hoten")).SendKeys("Nguyễn Văn D");
+            driver.FindElement(By.Name("email")).SendKeys("nguyenvand@gmail.com");
+            driver.FindElement(By.Name("soDienThoai")).SendKeys("0903654735");
+            driver.FindElement(By.Name("diachi")).SendKeys("");
+            driver.FindElement(By.Name("password")).SendKeys("Khavo0603");
+            driver.FindElement(By.Name("confirm_password")).SendKeys("Khavo0603");
+
+             
+            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+            Thread.Sleep(2000);
+
+            var err = driver.FindElements(By.XPath("//span[contains(@class, 'text-danger') and text()='Bạn chưa nhập địa chỉ!']"));
+
+
+            string mes = err.Count > 0 ? err[0].Text : string.Empty;
+
+
+            Assert.IsTrue(mes.Contains("Bạn chưa nhập địa chỉ!"));
+        }
+
+        [Test]
+        public void Test_RegisterWithoutPassword()
+        {
+
+            driver.FindElement(By.Name("hoten")).SendKeys("Nguyễn Văn D");
+            driver.FindElement(By.Name("email")).SendKeys("nguyenvand@gmail.com");
+            driver.FindElement(By.Name("soDienThoai")).SendKeys("123456789");
+            driver.FindElement(By.Name("diachi")).SendKeys("123 Đường ABC, TP.HCM");
+            driver.FindElement(By.Name("password")).SendKeys("");
+            driver.FindElement(By.Name("confirm_password")).SendKeys("");
+
+
+            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+            Thread.Sleep(2000);
+
+            var err = driver.FindElements(By.XPath("//span[contains(@class, 'text-danger') and text()='Bạn chưa nhập mật khẩu']"));
+
+
+            string mes = err.Count > 0 ? err[0].Text : string.Empty;
+
+
+            Assert.IsTrue(mes.Contains("Bạn chưa nhập mật khẩu"));
+        }
+
+        [Test]
+        public void Test_RegisterErrtPassword()
+        {
+
+            driver.FindElement(By.Name("hoten")).SendKeys("Nguyễn Văn D");
+            driver.FindElement(By.Name("email")).SendKeys("nguyenvand@gmail.com");
+            driver.FindElement(By.Name("soDienThoai")).SendKeys("123456789");
+            driver.FindElement(By.Name("diachi")).SendKeys("123 Đường ABC, TP.HCM");
+            driver.FindElement(By.Name("password")).SendKeys("123abc");
+            driver.FindElement(By.Name("confirm_password")).SendKeys("123abc");
+
+
+            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+            Thread.Sleep(2000);
+
+            var err = driver.FindElements(By.XPath("//span[contains(@class, 'text-danger') and text()='Mật khẩu tối thiểu 8 ký tự, có chữ hoa, chữ thường và số']"));
+
+
+            string mes = err.Count > 0 ? err[0].Text : string.Empty;
+
+
+            Assert.IsTrue(mes.Contains("Mật khẩu tối thiểu 8 ký tự, có chữ hoa, chữ thường và số"));
+        }
+
+        [Test]
+        public void Test_RegisterErrtConfirm_password()
+        {
+
+            driver.FindElement(By.Name("hoten")).SendKeys("Nguyễn Văn D");
+            driver.FindElement(By.Name("email")).SendKeys("nguyenvand@gmail.com");
+            driver.FindElement(By.Name("soDienThoai")).SendKeys("123456789");
+            driver.FindElement(By.Name("diachi")).SendKeys("123 Đường ABC, TP.HCM");
+            driver.FindElement(By.Name("password")).SendKeys("Khavo0603");
+            driver.FindElement(By.Name("confirm_password")).SendKeys("Khavo");
+
+
+            driver.FindElement(By.CssSelector("button[type='submit']")).Click();
+            Thread.Sleep(2000);
+
+            var err = driver.FindElements(By.XPath("//span[contains(@class, 'text-danger') and text()='Mật khẩu không khớp']"));
+
+
+            string mes = err.Count > 0 ? err[0].Text : string.Empty;
+
+
+            Assert.IsTrue(mes.Contains("Mật khẩu không khớp"));
         }
 
         [TearDown]

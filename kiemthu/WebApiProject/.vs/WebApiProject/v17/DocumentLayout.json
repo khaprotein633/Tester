@@ -1,12 +1,201 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|c:\\users\\khamoi\\desktop\\kiemthu\\webapiproject\\webapiproject\\controllers\\login\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\controllers\\login\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAA9EE3C-C376-4F49-A279-4770701702DA}|WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj|c:\\users\\khamoi\\desktop\\kiemthu\\webapiproject\\webapiproject.unittests\\dangnhaptest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAA9EE3C-C376-4F49-A279-4770701702DA}|WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj|solutionrelative:webapiproject.unittests\\dangnhaptest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|c:\\users\\khamoi\\desktop\\kiemthu\\webapiproject\\webapiproject\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAA9EE3C-C376-4F49-A279-4770701702DA}|WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj|c:\\users\\khamoi\\desktop\\kiemthu\\webapiproject\\webapiproject.unittests\\dangkytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAA9EE3C-C376-4F49-A279-4770701702DA}|WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj|solutionrelative:webapiproject.unittests\\dangkytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\webapiproject\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\webapiproject\\controllers\\orders\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\controllers\\orders\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\webapiproject\\models\\shopping_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\models\\shopping_cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\webapiproject\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\webapiproject\\models\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13CFAF8B-A3C1-4E32-8964-2E0B16D9CA55}|WebApiProject\\WebApiProject.csproj|solutionrelative:webapiproject\\models\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAA9EE3C-C376-4F49-A279-4770701702DA}|WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj|c:\\users\\khamoi\\desktop\\kiemthu\\webapiproject\\webapiproject.unittests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAA9EE3C-C376-4F49-A279-4770701702DA}|WebApiProject.UnitTests\\WebApiProject.UnitTests.csproj|solutionrelative:webapiproject.unittests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 114,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 286,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DangKyTest.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\DangKyTest.cs",
+              "RelativeDocumentMoniker": "WebApiProject.UnitTests\\DangKyTest.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\DangKyTest.cs",
+              "RelativeToolTip": "WebApiProject.UnitTests\\DangKyTest.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T09:48:32.685Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Controllers\\Login\\LoginController.cs",
+              "RelativeDocumentMoniker": "WebApiProject\\Controllers\\Login\\LoginController.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Controllers\\Login\\LoginController.cs",
+              "RelativeToolTip": "WebApiProject\\Controllers\\Login\\LoginController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwCQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T11:06:02.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebApiProject\\Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "WebApiProject\\Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-25T10:47:11.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DangNhapTest.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\DangNhapTest.cs",
+              "RelativeDocumentMoniker": "WebApiProject.UnitTests\\DangNhapTest.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\DangNhapTest.cs",
+              "RelativeToolTip": "WebApiProject.UnitTests\\DangNhapTest.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA1wCMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T10:42:13.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "WebApiProject\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\Product.cs",
+              "RelativeToolTip": "WebApiProject\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwB0AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T13:03:44.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "cartController.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Controllers\\Orders\\cartController.cs",
+              "RelativeDocumentMoniker": "WebApiProject\\Controllers\\Orders\\cartController.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Controllers\\Orders\\cartController.cs",
+              "RelativeToolTip": "WebApiProject\\Controllers\\Orders\\cartController.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAgwE8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:57:46.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Shopping_Cart.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\Shopping_Cart.cs",
+              "RelativeDocumentMoniker": "WebApiProject\\Models\\Shopping_Cart.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\Shopping_Cart.cs",
+              "RelativeToolTip": "WebApiProject\\Models\\Shopping_Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:05:44.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GioHang.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\GioHang.cs",
+              "RelativeDocumentMoniker": "WebApiProject\\Models\\GioHang.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\GioHang.cs",
+              "RelativeToolTip": "WebApiProject\\Models\\GioHang.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:05:27.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DangKy.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\DangKy.cs",
+              "RelativeDocumentMoniker": "WebApiProject\\Models\\DangKy.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject\\Models\\DangKy.cs",
+              "RelativeToolTip": "WebApiProject\\Models\\DangKy.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T09:50:31.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "WebApiProject.UnitTests\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\Khamoi\\Desktop\\kiemthu\\WebApiProject\\WebApiProject.UnitTests\\UnitTest1.cs",
+              "RelativeToolTip": "WebApiProject.UnitTests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T09:48:26.456Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

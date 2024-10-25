@@ -55,7 +55,7 @@ namespace WebApiProject.Tests
             var validationResults = ValidateModel(model);
 
             // Kiểm tra có lỗi thông báo cho trường họ tên
-            Assert.IsTrue(validationResults.Any(v => v.ErrorMessage.Contains("Bạn chưa nhập họ tên !")));
+            Assert.IsTrue(validationResults.Any(v => v.ErrorMessage.Contains("Bạn chưa nhập họ tên!")));
         }
 
         // Test Case 3: Email trống -> Bắt lỗi
@@ -155,7 +155,7 @@ namespace WebApiProject.Tests
             var validationResults = ValidateModel(model);
 
             // Kiểm tra có lỗi thông báo cho trường địa chỉ
-            Assert.IsTrue(validationResults.Any(v => v.ErrorMessage.Contains("Bạn chưa nhập địa chỉ !")));
+            Assert.IsTrue(validationResults.Any(v => v.ErrorMessage.Contains("Bạn chưa nhập địa chỉ!")));
         }
     }
  
